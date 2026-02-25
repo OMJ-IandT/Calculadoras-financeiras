@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadoras Financeiras Online Gratuitas</title>
+<meta name="description" content="Simulador de financiamento imobiliário, veículo e calculadora de juros compostos online grátis.">
+<style>
+body { font-family: Arial; margin: 40px; background: #f4f6f9; }
+h1 { color: #1a1a1a; }
+.container { background: white; padding: 20px; margin-bottom: 30px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.05);}
+input { padding: 8px; margin: 5px 0; width: 100%; }
+button { padding: 10px; background: #2c7be5; color: white; border: none; cursor: pointer; width: 100%; }
+.result { margin-top: 10px; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<h1>Calculadoras Financeiras Online</h1>
+
+<div class="container">
+<h2>Simulador de Financiamento</h2>
+<input type="number" id="valor" placeholder="Valor financiado">
+<input type="number" id="taxa" placeholder="Taxa de juros mensal (%)">
+<input type="number" id="meses" placeholder="Número de parcelas">
+<button onclick="calcularFinanciamento()">Calcular</button>
+<div class="result" id="resultadoFinanciamento"></div>
+</div>
+
+<div class="container">
+<h2>Calculadora de Juros Compostos</h2>
+<input type="number" id="capital" placeholder="Capital inicial">
+<input type="number" id="juros" placeholder="Taxa mensal (%)">
+<input type="number" id="tempo" placeholder="Tempo (meses)">
+<button onclick="calcularJuros()">Calcular</button>
+<div class="result" id="resultadoJuros"></div>
+</div>
+
+<script>
+function calcularFinanciamento() {
+    let valor = parseFloat(document.getElementById('valor').value);
+    let taxa = parseFloat(document.getElementById('taxa').value) / 100;
+    let meses = parseInt(document.getElementById('meses').value);
+
+    let parcela = (valor * taxa) / (1 - Math.pow(1 + taxa, -meses));
+    document.getElementById('resultadoFinanciamento').innerText =
+        "Parcela aproximada: R$ " + parcela.toFixed(2);
+}
+
+function calcularJuros() {
+    let capital = parseFloat(document.getElementById('capital').value);
+    let juros = parseFloat(document.getElementById('juros').value) / 100;
+    let tempo = parseInt(document.getElementById('tempo').value);
+
+    let montante = capital * Math.pow(1 + juros, tempo);
+    document.getElementById('resultadoJuros').innerText =
+        "Montante final: R$ " + montante.toFixed(2);
+}
+</script>
+
+</body>
+</html>
